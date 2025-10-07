@@ -1,1 +1,602 @@
-# kakashi
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sudharson.A | Cyber Defender Portfolio</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* --- 1. Variables & Global Reset --- */
+        :root {
+            /* The darkest background color, used for the main body */
+            --color-dark-bg: #0a0a1a; 
+            /* Slightly lighter background color, used for major sections (like Hero) */
+            --color-main-bg: #12122b; 
+            /* Background for cards/containers */
+            --color-card-bg: #1a1a38; 
+            /* Primary color (Blue/Cyan) */
+            --color-primary-blue: #00bcd4; 
+            /* Accent Color (Electric Green) */
+            --color-accent-green: #39ff14; 
+            /* Light text color */
+            --color-text-light: #f0f0f0;
+            /* Muted text color */
+            --color-text-muted: #b0b0d0;
+            --border-radius-lg: 10px;
+            --border-radius-sm: 5px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* FIX: Ensure the entire body has the darkest background for uniform black color */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--color-dark-bg);
+            color: var(--color-text-light);
+            line-height: 1.6;
+            padding-top: 60px; /* Space for fixed header */
+        }
+        
+        /* --- 2. Typography & Headings --- */
+        h1, h2, h3, h4 {
+            color: var(--color-text-light);
+            margin-bottom: 0.5em;
+        }
+
+        h1 { font-size: 2.5em; }
+        h2 { font-size: 2em; border-bottom: 2px solid var(--color-accent-green); padding-bottom: 0.2em; }
+        p { margin-bottom: 1em; }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 1.5em;
+            font-size: 2.2em;
+            color: var(--color-accent-green);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--color-text-muted);
+            margin-bottom: 3em;
+        }
+
+        /* --- 3. Glow & Special Effects --- */
+        .glow-text {
+            text-shadow: 0 0 5px var(--color-accent-green), 0 0 10px rgba(57, 255, 20, 0.5);
+            color: var(--color-text-light);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(57, 255, 20, 0.7); }
+            70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(57, 255, 20, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(57, 255, 20, 0); }
+        }
+
+        .pulse-effect {
+            animation: pulse 2s infinite;
+        }
+
+        /* --- 4. Layout & Containers --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 40px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .hero-section {
+            background-color: var(--color-main-bg);
+            padding: 60px 0;
+            border-bottom: 3px solid var(--color-accent-green);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Subtle background circuit pattern */
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(circle, rgba(57, 255, 20, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .hero-section .container {
+            align-items: flex-start;
+            position: relative;
+            z-index: 1;
+        }
+
+
+        /* --- 5. Navigation Bar --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            /* Kept semi-transparent background for the blur effect */
+            background-color: rgba(18, 18, 43, 0.95); 
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            z-index: 1000;
+            border-bottom: 1px solid var(--color-primary-blue);
+        }
+        
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--color-accent-green);
+            letter-spacing: 2px;
+        }
+
+        .logo .subtitle {
+            font-size: 0.6em;
+            color: var(--color-text-muted);
+        }
+
+        .navbar a {
+            color: var(--color-text-light);
+            text-decoration: none;
+            margin-left: 25px;
+            padding: 5px 10px;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+
+        .navbar a:hover {
+            color: var(--color-accent-green);
+            text-shadow: 0 0 5px var(--color-accent-green);
+        }
+
+        .cta-button {
+            background-color: var(--color-accent-green);
+            color: var(--color-dark-bg) !important;
+            padding: 8px 18px !important;
+            border-radius: var(--border-radius-sm);
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 0 10px var(--color-accent-green);
+        }
+
+        .cta-button:hover {
+            background-color: #55ff35;
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px var(--color-accent-green);
+            text-shadow: none;
+        }
+
+
+        /* --- 6. Hero & Profile Card --- */
+        .profile-card {
+            flex: 2;
+        }
+
+        .role-title {
+            color: var(--color-primary-blue);
+            font-size: 1.2em;
+            margin-bottom: 1.5em;
+        }
+
+        .bio-statement {
+            max-width: 800px;
+            margin-bottom: 2em;
+        }
+
+        .primary-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--color-accent-green);
+            color: var(--color-dark-bg);
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: var(--border-radius-sm);
+            transition: background-color 0.3s, transform 0.2s;
+            margin-top: 1.5em;
+            font-size: 1.1em;
+        }
+
+        .primary-button i { margin-left: 10px; }
+
+
+        /* --- 7. Skill Tags --- */
+        .skill-tags {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background-color: var(--color-card-bg);
+            color: var(--color-accent-green);
+            padding: 5px 12px;
+            border-radius: var(--border-radius-sm);
+            border: 1px solid var(--color-accent-green);
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .tag:hover {
+            background-color: rgba(57, 255, 20, 0.2);
+            cursor: default;
+        }
+
+
+        /* --- 8. The Toolbox (Quick Links) --- */
+        .link-box {
+            flex: 1;
+            background-color: var(--color-card-bg);
+            padding: 30px;
+            border-radius: var(--border-radius-lg);
+            box-shadow: 0 0 20px rgba(0, 188, 212, 0.1);
+            border: 1px solid var(--color-primary-blue);
+        }
+
+        .link-box .section-title {
+            font-size: 1.5em;
+            text-align: left;
+            border-bottom: 1px solid var(--color-text-muted);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .link-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .tool-link {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background-color: #252545;
+            color: var(--color-text-light);
+            text-decoration: none;
+            border-radius: var(--border-radius-sm);
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+        }
+
+        .tool-link i {
+            margin-right: 15px;
+            color: var(--color-accent-green);
+            font-size: 1.2em;
+        }
+
+        .tool-link:hover {
+            background-color: var(--color-primary-blue);
+            transform: translateX(5px);
+            box-shadow: 0 0 10px rgba(0, 188, 212, 0.5);
+        }
+
+
+        /* --- 9. Projects Section --- */
+        .projects-section {
+            background-color: var(--color-dark-bg);
+            padding: 80px 20px;
+        }
+        
+        .project-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .project-card {
+            background-color: var(--color-card-bg);
+            padding: 30px;
+            border-radius: var(--border-radius-lg);
+            border-left: 5px solid var(--color-accent-green);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card.full-width {
+            grid-column: 1 / -1; 
+            max-width: 900px;
+            margin: 30px auto;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(57, 255, 20, 0.2);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .card-header h3 {
+            color: var(--color-accent-green);
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 8px;
+        }
+
+        .tag-primary {
+            background-color: var(--color-accent-green);
+            color: var(--color-dark-bg);
+            padding: 4px 10px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .secondary-button {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--color-primary-blue);
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid var(--color-primary-blue);
+            padding: 8px 15px;
+            border-radius: 3px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .secondary-button:hover {
+            background-color: var(--color-primary-blue);
+            color: var(--color-dark-bg);
+        }
+
+
+        /* --- 10. Certifications Section --- */
+        .certifications-section {
+            padding: 80px 20px;
+            background-color: var(--color-main-bg);
+            border-top: 2px dashed var(--color-text-muted);
+            border-bottom: 2px dashed var(--color-text-muted);
+        }
+
+        .cert-item {
+            display: flex;
+            align-items: flex-start;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #1a1a38;
+            border-radius: var(--border-radius-sm);
+            border-left: 3px solid var(--color-primary-blue);
+        }
+
+        .cert-icon {
+            font-size: 2em;
+            color: var(--color-primary-blue);
+            margin-right: 20px;
+        }
+
+        .cert-details h4 {
+            color: var(--color-text-light);
+            margin-top: 0;
+            margin-bottom: 0.5em;
+        }
+
+        .cert-details p {
+            color: var(--color-text-muted);
+            margin-bottom: 0;
+        }
+        
+        /* --- 11. Contact Form --- */
+        .contact-section {
+            background-color: var(--color-dark-bg);
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .contact-form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--color-card-bg);
+            padding: 40px;
+            border-radius: var(--border-radius-lg);
+        }
+
+        .contact-form input, 
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid var(--color-primary-blue);
+            border-radius: var(--border-radius-sm);
+            background-color: #12122b;
+            color: var(--color-text-light);
+            font-size: 1em;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .contact-form input:focus, 
+        .contact-form textarea:focus {
+            border-color: var(--color-accent-green);
+            outline: none;
+            box-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+        }
+
+        .send-button {
+            width: 100%;
+            background: linear-gradient(90deg, var(--color-primary-blue), var(--color-accent-green));
+            color: var(--color-dark-bg);
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 15px;
+            border: none;
+            border-radius: var(--border-radius-sm);
+            cursor: pointer;
+            transition: opacity 0.3s, transform 0.2s;
+        }
+        
+        .send-button:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        /* --- 12. Footer --- */
+        .site-footer {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--color-card-bg);
+            color: var(--color-text-muted);
+            font-size: 0.9em;
+            border-top: 1px solid rgba(57, 255, 20, 0.2);
+        }
+
+        /* --- 13. Responsive Design --- */
+        @media (max-width: 992px) {
+            .container {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .navbar nav {
+                display: none; 
+            }
+            
+            .project-grid {
+                grid-template-columns: 1fr; 
+            }
+
+            .projects-section, .certifications-section, .contact-section {
+                padding: 40px 10px;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">S.A. <span class="subtitle">Cybersecurity Analyst</span></div>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#projects">Knowledge & Projects</a>
+            <a href="#certifications">Certifications</a>
+            <a href="#contact" class="cta-button">Connect</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about" class="hero-section">
+            <div class="container">
+                <div class="profile-card">
+                    <h1 class="glow-text">Sudharson.A</h1>
+                    <p class="role-title">Cybersecurity | Penetration Testing | Digital Forensics</p>
+                    
+                    <div class="bio-statement">
+                        <p>I am a *Cyber Defender* specializing in *Web Application Security* and *Digital Forensics, using **Python and Bash* to automate rapid reconnaissance and reporting. I'm driven to find and document the gaps before the attackers do.</p>
+                        <p class="school-info">2nd-year Cybersecurity student at Mahendra Engineering College.</p>
+                    </div>
+
+                    <div class="skill-tags">
+                        <span class="tag">Kali Linux</span>
+                        <span class="tag">Web Pentesting</span>
+                        <span class="tag">Digital Forensics</span>
+                        <span class="tag">Python/Bash</span>
+                        <span class="tag">Nmap/Burp</span>
+                        <span class="tag">Wireshark</span>
+                    </div>
+
+                    <a href="https://github.com/sudhars0nsudharson002-cmd" class="primary-button pulse-effect">View on GitHub <i class="fab fa-github"></i></a>
+                </div>
+
+                <div class="link-box">
+                    <h2 class="section-title">My Cybersecurity Toolbox</h2>
+                    <div class="link-grid">
+                        <a href="https://github.com/sudharsonsudharson002-cmd" class="tool-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        
+                        <a href="#" class="tool-link" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        
+                        <a href="#" class="tool-link" target="_blank"><i class="fas fa-flag"></i> CTF Profile</a>
+                        
+                        <a href="#" class="tool-link" target="_blank"><i class="fas fa-hat-wizard"></i> HackTheBox</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="certifications" class="certifications-section">
+            <h2 class="section-title">Certifications & Training</h2>
+            <div class="cert-item">
+                <i class="fas fa-certificate cert-icon"></i>
+                <div class="cert-details">
+                    <h4>CEH (Ongoing)</h4>
+                    <p>Formal training and labs covering core ethical hacking principles and methodologies.</p>
+                </div>
+            </div>
+            <div class="cert-item">
+                <i class="fas fa-network-wired cert-icon"></i>
+                <div class="cert-details">
+                    <h4>Linux & Networking Workshops - Forensics Labs</h4>
+                    <p>Practical application of Linux/networking concepts in a digital forensics context.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="projects" class="projects-section">
+            <h2 class="section-title glow-text">Knowledge & Projects</h2>
+            <p class="section-subtitle">Real-world scenarios, discoveries, and automation scripts.</p>
+
+            <div class="project-card full-width">
+                <div class="card-header">
+                    <h3>Automation & Tooling</h3>
+                </div>
+                <p>Automated recon scripts (Python) for Nmap parsing, screenshotting, and report generation used in labs.</p>
+            </div>
+            
+            <div class="project-grid">
+                
+                <div class="project-card">
+                    <div class="card-header">
+                        <h3>Web CTF Lab</h3>
+                    </div>
+                    <p>Practice environment with write-ups and remediation steps targeting OWASP Top 10.</p>
+                    <a href="#" class="secondary-button">View Write-up <i class="fas fa-book-open"></i></a>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header">
+                        <h3>Forensics Toolkit</h3>
+                    </div>
+                    <p>Scripts for image analysis, timelines, and deleted file recovery with example outputs.</p>
+                    <a href="https://github.com/sudharsansudharsan002-cmd/Forensics-Toolkit-Repo" class="secondary-button">View on GitHub <i class="fab fa-github"></i></a>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header">
+                        <h3>Automation Scripts</h3>
+                    </div>
+                    <p>Recon parsers and reporting scripts to speed up lab workflows.</p>
+                    <a href="https://github.com/sudharsonsudharson002-cmd/Automation-Scripts-Repo" class="secondary-button">View on GitHub <i class="fab fa-github"></i></a>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header">
+                        <h3>Kali Tips</h3>
+                    </div>
+                    <p>Cheat-sheets and quick ref
